@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <head>
-  <title>MANUAL SHUTOFF ENGAGED</title>
+  <title>MANUAL ACTIVATION ENGAGED</title>
   <link rel="stylesheet" href="ss.css" type="text/css"/>
 </head>
 <body>
@@ -15,7 +15,7 @@
             $job = "gpio mode $buf out && gpio write $buf 1";
             exec($job);
         }
-        echo "<div class='pane'><center><b>TURNED ALL DEVICES OFF</b></center><center><a href='..'> click if the page doesn't redirect</a></center></div>";
+        echo "<div class='pane'><center><b>TURNED ALL DEVICES ON</b></center><center><a href='..'> click if the page doesn't redirect</a></center></div>";
         echo "<script>setTimeout(function(){window.history.back();},1200);</script>";
     }
     else
