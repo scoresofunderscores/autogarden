@@ -41,16 +41,14 @@ dependencies :
 	git clone "https://github.com/HowardHinnant/date";
 	cp date/src/tz* /autogarden/tz.cc;
 	-cp date/LICENSE.txt /autogarden/DATE_LIBRARY_LICENSE.txt
-	cd /autogarden/wiringPi/;
-	./build;
+	cd /autogarden/wiringPi && ./build;
 	-cp /wiringPi/COPYING.LESSER /autogarden/WIRING_PI_LICENSE.txt;
 	@echo "Done dealing with dependencies...";
 
 barebones: raincheck.cc options.hh PROGRAM.OPTIONS
 	$(PKG_MANAGER_INSTALL_CMD) $(DEPENDENCY_LISTING_BAREBONES);
 	git clone "git://git.drogon.net/wiringPi";
-	cd /autogarden/wiringPi/;
-	./build;
+	cd /autogarden/wiringPi && ./build;
 	$(COMPILER) raincheck.cc -o raincheck -lcurl;
 	chmod ug+x /autogarden/raincheck;
 	@echo "Barebones target complete. See README.md for an example line to put into your crontab.";

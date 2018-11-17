@@ -5,7 +5,6 @@
 </head>
 <body>
 <?php
-    exec('/autogarden/d off');
     $pins = @fopen("/autogarden/pins", "r");
     if($pins)
     {

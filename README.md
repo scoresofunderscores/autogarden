@@ -1,7 +1,6 @@
 # autogarden
 #### an automatic or manual watering software solution for low cost GPIO enabled SBCs.
-
-Current version: 0.11 alpha (some more testing and code clean up need to be done)
+![auto_garden screenshot](https://occc.co/de/img/autogarden_scr.png)
 
 ## What in the world is this?
 
@@ -61,7 +60,7 @@ cd /autogarden
 8. Run this to compile and set up autogarden. It should run all necessary commands on a debian OS.
 
 ```bash
-make autogarden
+make install
 ```
 
 9. When it's done doing it's thing, test out your web interface by opening a web browser when connected to your LAN, and type in the hostname of your device. In addition, you can use the IPs that the makefile spits out after installation is complete. You should see the web interface and you should be able to configure everything through it from here on out.
@@ -70,7 +69,7 @@ make autogarden
 
 ## What about if I just want a no frills option that works on anything?
 
-If you don't want any frontend stuff, simply run **make barebones** instead of **make autogarden** and this will only set up an executable in /autogarden/raincheck as well as installing gpio. You'll still need to set up your /autogarden/PROGRAM.OPTIONS file with all of the correct information if you want to use the weather API, otherwise raincheck will always return 0 (dumb mode, will ALWAYS attempt to send a signal). You can then 'schedule' your tasks by adjusting your root's crontab, with something like this to control your devices:
+If you don't want any frontend stuff, simply run **make barebones** instead of **make install** and this will only set up an executable in /autogarden/raincheck as well as installing gpio. You'll still need to set up your /autogarden/PROGRAM.OPTIONS file with all of the correct information if you want to use the weather API, otherwise raincheck will always return 0 (dumb mode, will ALWAYS attempt to send a signal). You can then 'schedule' your tasks by adjusting your root's crontab, with something like this to control your devices:
 
 0 7 * * * /autogarden/raincheck && gpio mode 0 out && gpio write 0 1 && sleep 30 && gpio write 0 0;
 
