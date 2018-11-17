@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<head>
+  <title>autogarden help</title>
+  <link rel="stylesheet" href="ss.css" type="text/css"/>
+  <link rel="shortcut icon" type="image/ico" href="favicon.ico"/>
+</head>
+<body>
+  <center><h1>?</h1></center>
+  <div id="toc">
+    <center><h3>table of contents</h3></center>
+    <a href="#about">about autogarden</a>
+    <a href="#install">installing autogarden</a>
+    <a href="#schedule">scheduling tasks</a>
+    &nbsp; <!-- everything will be fine -->
+  </div>
+  <div class="pane" id="help">
+    <a id="anchor" name="about">&nbsp;about autogarden<span id="blinky">_</span></a>
+    <p>autogarden is an amorphous blob of PHP and C++ that can control GPIO pins which usually drive relays. These relays operate external electronics, such as electronic pumps, valves etc. For the sake of an easy setup, I have also included <a id="halp" href="#hardware">simple hardware designs</a> that may assist your setup on a small garden. You do not have to follow this. You can make whatever hardware that suits you as long as it can be operated using 3.3 volt signals.
+    </p>
+    <p>
+      autogarden works by running a daemon (a background process) on the server it's running on that checks the <em>/autogarden/tasks</em> file for 'tasks'. Tasks consist of three things: <em> a gpio pin to toggle </em>, <em> the time the task should begin </em>, and <em> the duration of the task in seconds</em>. It's very similar to a crontab entry, however there is obviously no command or time of day, month etc. In addition, if weather services (OWM API) are enabled in <em>PROGRAM.OPTIONS</em>, then the daemon will check to see if it is raining before any tasks are carried out as obviously watering your plants while it is raining is serious overkill. Let's go over how the software is used...
+    </p>
+    <br>
+    <a id="anchor" name="schedule">&nbsp;scheduling tasks</a>
+    <p>There are three ways to schedule your tasks for the daemon to work on every day. We'll start with the easiest and recommended option and work our way down:</p>
+    <br>
+    <h3>Using the Control Panel...</h3>
+    <br>
+    <p>At the main menu, click on the 'gears' icon. This is the options menu where you can schedule new tasks, check your log, and remove tasks you don't need. The very first option is what we want here, <em>schedule new tasks</em>. The task start time and duration are both pretty self explanatory, to find the pin number you plugged your jumper into use <a id="halp" href="../pinConf.php">this link</a>, hit the <em>view pin layout</em> link on the top of the options menu, or just run <em>gpio readall</em> on the command line. You should be looking for the <em>wPi</em> numbers. Once you have the pin number, simply type it into this field and set the other two fields, then hit Enter or the <em>Create Task</em> button.
+    </p>
+    <br>
+    <h3>Using /autogarden/schedule on the command line...</h3>
+    <br>
+    <p>
+      When a task is scheduled through the control panel, PHP calls an executable located in your /autogarden/ directory named <em>schedule</em>. You can do the same exact thing the web control panel does by calling it yourself from the CLI. Here are two valid example commands we can use:
+    </p>
+    <pre>/autogarden/schedule add 0 08:00 45</pre>
+    <pre>/autogarden/schedule remove 0</pre>
+    <p>
+      The first command adds a new task into the file <em>/autogarden/tasks</em> if it does not already exist. The second command removes the command we added using the former command. After running these two, assuming the file was empty in the first place, the /autogarden/tasks will be empty. The syntax is available from the command line by running <em>/autogarden/schedule help</em> but I will list them here as a quick reference:
+    </p>
+    <pre> /autogarden/schedule add [GPIO PIN NUMBER] [WHEN THE TASK SHOULD START (HH:MM)] [HOW MANY SECONDS] </pre>
+    <pre> /autogarden/schedule remove [LINE NUMBER OF TASKS FILE TO REMOVE] </pre>
+    <p>
+      The executable protects against accidentally messing up the file, which would cause some tasks to not 'fire'. The next way to schedule doesn't bother and instead relies on you not messing up.
+    </p>
+    <h3>Using a text editor...</h3>
+    <p>
+      This one is pretty self explanatory. Just edit /autogarden/tasks yourself with your favorite text editor. Just be careful when doing so as there are no safety checks performed, whereas if you used <em>schedule</em> you would not have to worry about it. Regardless, it is definitely easier to just edit it and be done with it. The task syntax is pretty basic and is below:
+    </p>
+    <pre> [GPIO PIN] [WHEN THE TASK SHOULD START (HH:MM)] [HOW MANY SECONDS] </pre>
+    <p>
+      The daemon will automatically load in the file if any changes are made, so even if you do mess up - just change it back to a syntactically correct version and it will figure itself out. No harm done.
+    </p>
+    <a id="anchor" name="install">&nbsp;installing autogarden<span id="blinky">_</span></a>
+    <p>View the README.md file on the server or go to this link and <a id="halp" href="https://github.com/scoresofunderscores/autogarden">read the README for installation information.</a> Because the hardware guide isn't done being written yet, I've included a dog instead.</a></p>
+    <img src="img/dog.jpg"></img>
+  </div>
+</body>
+</html>

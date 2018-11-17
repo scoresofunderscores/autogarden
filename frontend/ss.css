@@ -1,0 +1,343 @@
+@font-face
+{
+    font-family:weatherReport;
+    src:url("font/report.otf");
+    font-weight:normal;
+    font-style:normal;
+}
+
+@keyframes blink
+{
+    from{opacity:1;}
+    to{opacity:0;}
+}
+
+body
+{
+    background:url("img/garden.jpg");
+    background-size:100% 100%;
+    width:100vw;
+    height:100vh;
+    margin:0;
+    padding:0;
+    font-family:monospace;
+    color:#FFF;
+    overflow-x:hidden;
+}
+
+h1
+{
+    font-size:4em;
+    color:#000!important;
+    font-family:weatherReport;
+}
+
+h2
+{
+    font-family:weatherReport;
+    font-style:bold;
+    color:#FFF;
+    font-size:2em;
+}
+
+.pane img
+{
+    width:128px;
+    height:128px;
+}
+
+a
+{
+    font-size:3em;
+    color:#00FFBB;
+}
+
+i
+{
+    font-size:5em;
+}
+
+b
+{
+    font-size:2em;
+    color:#FFF;
+    text-align:center;
+    font-family:weatherReport;
+}
+
+form
+{
+    margin-top:32px;
+    color:#FFF;
+    font-size:2em;
+    margin-bottom:128px;
+    width:100vw;
+    height:40vw;
+}
+
+input
+{
+    position:relative;
+    background-color:#1F1F1F;
+    color:#FFF;
+    float:left;
+    left:1%;
+    height:36px;
+    width:50%;
+    font-size:32px;
+}
+
+.inputData
+{
+    font-size:0.9em!important;
+    font-family:sans-serif;
+    float:right;
+}
+
+.pane
+{
+    position:relative;
+    background:#000;
+    opacity:0.8;
+    float:left;
+    width:100%;
+    top:10%;
+}
+
+#status
+{
+    border:8px groove #FFF;
+    border-left:0px;
+    border-right:0px;
+    border-bottom:0px;
+    font-size: 2.2em;
+}
+
+#schedule
+{
+    position:relative;
+    width:80%;
+    height:100%;
+}
+
+center
+{
+    font-family:weatherReport;
+    color:#FFF;
+}
+
+#log
+{
+    color:#248324;
+    font-size:3em;
+}
+
+#temp
+{
+    font-size:2.5em!important;
+    color:#5d5d5d!important;
+}
+
+/** Device Status Indicators **/
+.device
+{
+    color:#FFF;
+    position:relative;
+    padding:32px;
+    border:2px solid #020075;
+    border-radius:180px;
+    border-size:2px;
+    font-size:32px;
+    width:36px;
+    height:36px;
+    text-align:center;
+    background-color:#020075;
+}
+
+#on
+{
+    background-color:#467452;
+    border-color:#467452;
+    width:64px;
+    height:64px;
+    font-size:56px;
+}
+
+#off
+{
+    background-color:#9F0000;
+    border-color:#9F0000;
+    width:64px;
+    height:64px;
+    font-size:56px;
+}
+
+#blinky
+{
+    animation-name:blink;
+    animation-duration:0.5s;
+    animation-iteration-count: infinite;
+}
+
+#subcat
+{
+    margin-top:64px;
+    color:#bff;
+}
+
+#halp
+{
+    font-size:1.25em;
+    font-style:italic;
+}
+
+#help
+{
+    opacity:1;
+}
+
+#help img
+{
+    margin-left:20vw;
+}
+
+h3
+{
+    color:#8888FF;
+    font-size:2em;
+}
+
+em
+{
+    color:#FF0000;
+    font-size:1.1em;
+    font-style:normal;
+}
+
+#other
+{
+    top:10%;
+    position:relative;
+    float:bottom;
+}
+
+#toc
+{
+    background:#000;
+    opacity:0.75;
+}
+
+#toc a
+{
+    position:relative;
+    color:#0367a9;
+    background-color:#000019;
+    float:left;
+    width:100%;
+    margin-bottom:32px;
+    text-align:center;
+    text-decoration:none;
+}
+
+pre
+{
+    margin-left:5vw;
+    font-size:1.1em;
+    font-style:bold;
+    color:#00FF00;
+}
+
+p
+{
+    font-size:1.35em;
+    color:#FFF;
+    text-align:left;
+    font-family:monospace;
+    line-height:1.35em;
+    width:70vw;
+    margin-left:5%;
+}
+
+#anchor
+{
+    font-size:3em;
+    width:100%;
+    border:4px groove #0cccc0;
+    border-top:0;
+    border-left:0;
+    border-right:0;
+}
+
+ol
+{
+    font-size:1.5em;
+    margin-left:32px;
+}
+
+button
+{
+    background-color:#2d2d2d;
+    color:#FFF;
+    font-size:32px;
+    float:right;
+    width:50%;
+    margin-top:32px;
+}
+
+.task
+{
+    font-family: sans-serif;
+    font-size:1.25em;
+    width:100%;
+    background-color:#131618;
+    opacity:0.9;
+    height:auto;
+    padding:8px;
+    padding-top:0px;
+}
+
+#pin
+{
+    margin-left:8px;
+    border:8px solid #007600;
+    padding-top:8px;
+    border-radius:180px;
+    background-color:#007600;
+    font-size:0.86em;
+}
+
+.del
+{
+    position:relative;
+    float:right;
+    width:128px;
+    overflow-x:hidden;
+    margin-right:8px;
+    height:100%;
+    background-color:#750000;
+    opacity:0.80;
+    color:#FFF;
+    font-size:1.1em;
+    font-family:sans-serif;
+    text-align:center;
+}
+
+#error
+{
+    color:#9f0000;
+}
+
+#top_bar
+{
+    background-color:#000;
+    color:#FFF;
+    font-style:normal;
+}
+
+#version
+{
+    position:relative;
+    top:0;
+    font-size:0.7em;
+    color:#2d2d2d;
+}

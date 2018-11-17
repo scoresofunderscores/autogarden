@@ -1,0 +1,33 @@
+Without the following people/open source projects this wouldn't exist.
+
+== Weather Icons 2.0.8 ================================================================
+Erik Flowers - erik@helloerik.com
+http://twitter.com/Erik_UX
+http://erikflowers.github.io/weather-icons
+
+== GPIO ===============================================================================
+Thanks to Gordon Henderson for this excellent utility.
+http://twitter.com/drogon
+http://wiringpi.com/
+
+== OpenWeatherMap ======================================================================
+For their great free API(s).
+
+== Icons for Control Panel =============================================================
+
+These were from my distribution and I cannot for the life of me figure out
+which icon package they're from... if you are the author of this please notify me.
+
+== Howard Hinnant ======================================================================
+
+For making date/tz , because <chrono> is fantastic but also really complicated.
+
+== Greetz ==============================================================================
+
+Greetz to LFT, Jeroen Tel, Linus, and the rest of the C64 scene.
+Also to the guy who made Bonzi Buddy and Hotwheels.
+
+== and viewers like you ================================================================
+        thank you
+
+If I have forgotten credit for someone or some thing please let me know.

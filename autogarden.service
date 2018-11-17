@@ -1,0 +1,11 @@
+[Unit]
+Description=Autogarden daemon (GPIO/Job control)
+
+[Service]
+Type=simple
+ExecStart=/autogarden/d
+User=root
+ExecReload=/bin/kill -HUP $MAINPID
+
+[Install]
+WantedBy=multi-user.target

@@ -1,0 +1,30 @@
+# autogarden configuration #
+############################
+
+#### weather api requirements below ######################################
+# When you're done making changes below, change this option below to true.
+
+ALLOW_WEATHER_SERVICE false
+
+# Use an ''Address to GPS coordinate'' service like gmaps or osm for this info
+# It is used to query OpenWeatherMap's API to deliver weather status and
+# make watering decisions.
+
+GPS_COORDINATE_LATITUDE replace_this_with_coordinate
+GPS_COORDINATE_LONGITUDE replace_this_with_coordinate
+
+# Place your API ID key you received from OpenWeatherMap below.
+
+API_ID_KEY replace_this_with_api_key
+
+# What version you're using on OWM's API. You may not need to change this.
+API_VERSION 2.5
+
+
+
+
+
+#### general options #####################################################
+# How should it display temperature info? Change this if you're not in USA.
+
+OUTPUT_TEMPERATURE_IN_F true
