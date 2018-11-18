@@ -24,7 +24,7 @@
             $job = "gpio mode $i out && gpio write $i 0";
             exec($job);
         }
-        echo "<div class='pane'><center><img src='error.svg'></img><b>Could not find /autogarden/pins file! Toggled default pins: 0,1,2,3,4,5. Unless your relays are on those pins it will not work. Make a file at /autogarden/pins thats readable by the user www-data (or apache, depends on your distro), and put in your pin numbers there, one per line, to fix this issue.</b></center></div>";
+        echo "<div class='pane'><center><img src='img/error.svg'></img><b>Could not find /autogarden/pins file! Toggled default pins: 0,1,2,3,4,5. Unless your relays are on those pins it will not work. Make a file at /autogarden/pins thats readable by the user www-data (or apache, depends on your distro), and put in your pin numbers there, one per line, to fix this issue.</b></center></div>";
         echo"<br><br><div class='pane'><center><a href='..'> click here to go back</a></center></div>";
     }
 ?>
