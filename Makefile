@@ -16,6 +16,7 @@ install :
 	-mv autogarden.service /etc/systemd/system
 	systemctl daemon-reload;
 	systemctl enable autogarden;
+	service autogarden start;
 	touch /autogarden/tasks && chown $(WEB_SERVER_USER):$(WEB_SERVER_USER) tasks; #make tasks file and log
 	touch /autogarden/log && chown $(WEB_SERVER_USER):$(WEB_SERVER_USER) log;
 	chmod ug+rw tasks;
