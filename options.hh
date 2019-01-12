@@ -1,5 +1,4 @@
 #pragma once
-
 #include <fstream>
 #include <map>
 #include <string>
@@ -16,19 +15,17 @@ typedef struct Options
     std::ifstream ifs("/autogarden/PROGRAM.OPTIONS");
     std::string line;    
     if(!ifs.fail())
-    {      
+    {
+      //for line in file, make sure only ( n ) spaces exist. One per newline. Blank newlines can exist. Comments are not counted.
       while(std::getline(ifs, line))
       {
-	if(line.length() > 1)
+	if(line.length() > 1 && line[0] != '#')
 	{
-	  if(line[0] != '#')
-	  {
-	    std::istringstream iss{line};
-	    std::string k,v;
-	    std::getline(iss, k, ' ');
-	    std::getline(iss, v, '\n');
-	    data.emplace(make_pair(k,v));
-	  }
+	  std::istringstream iss{line};
+	  std::string k,v;
+	  std::getline(iss, k, ' ');
+	  std::getline(iss, v, '\n');
+	  data.emplace(make_pair(k,v));	  
 	}
       }
     }
@@ -39,7 +36,7 @@ typedef struct Options
   {
     auto res = data.find(std::string(what));
     if(res != data.end())
-    {
+    { 
       return res->second;
     }
     else return NIL;

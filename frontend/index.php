@@ -6,11 +6,9 @@
   <link rel="shortcut icon" type="image/ico" href="favicon.ico"/>
 </head>
 <body>
-  <center><h1>autogarden<span id="blinky">_</span></h1></center>
-  <center><h2>irrigation system control panel</h2></center>
+  <center><h1>autogarden<span id="blinky">_</span></h1><br></center>
   <br/>
   <div class="pane" id="manual">
-    <center><b> Manual Control </b></center>
     <br/>
     <center>
       <a href="on.php"><img src="img/start.svg" alt="Turn on."></img></a>
@@ -43,11 +41,11 @@
       {
           if(strpos($stats[1], "Rain") === false)
           {
-              echo "<center><b>?</b>$stats[1]";
+              echo "<center><b>?</b> $stats[1]";
           }
           else
           {
-              echo "<center><b class='wi wi-day-rain'></b>$stats[1]";
+              echo "<center><b class='wi wi-day-rain'></b> $stats[1]";
           }
       }
       else

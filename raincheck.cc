@@ -63,6 +63,11 @@ string api_link()
 
 int main(int argc, char ** argv)
 {
+  if(opt.fail)
+  {
+    return 0xDEADBEEF;
+  }
+  
   if(opt["ALLOW_WEATHER_SERVICE"] == "false")
   {
     cout << endl;    
@@ -73,9 +78,10 @@ int main(int argc, char ** argv)
   {
     CURL * curl;
     string json;
+    string apiLink = api_link();
 
     curl = curl_easy_init();
-    if(curl)
+    if(curl && apiLink != "null")
     {
       curl_easy_setopt(curl, CURLOPT_URL, api_link().c_str());
       curl_easy_setopt(curl, CURLOPT_WRITEFUNCTION, write);
