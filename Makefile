@@ -5,11 +5,12 @@ COMPILER=g++ -Wall -O3 --std=c++17
 PKG_MANAGER_INSTALL_CMD=apt-get install
 WEB_SERVER_USER=www-data
 GIT_SOURCE=https://github.com/scoresofunderscores/autogarden/
+DATE=$(shell date +%m%d%y)
 
 # Hello, there.
 # Use install if you do not have autogarden installed already. Make sure all files are in /autogarden/.
-# Use update if you... want to update. Yeah.
-# If you copied over the frontend files and altered them, simply move the frontend files to /autogarden/frontend and use make frontend.
+# Use update if you... want to update.
+# If you copied over the frontend files and altered them, simply move the frontend files to /autogarden/frontend and run 'make frontend'
 # Barebones installs minimal dependencies (as seen above in DEPENDENCY_LISTING_BAREBONES) and gives you raincheck. Use a crontab to change your watering times.
 
 install :
@@ -36,21 +37,27 @@ install :
 	@echo "______________________________________";
 
 update :
-	-mkdir autogarden_update;
-	-mkdir autogarden_backup;
 	service autogarden stop;
-	cp /autogarden/* /autogarden_backup/;
-	cd autogarden_update && git clone $(GIT_SOURCE) && rm PROGRAM.OPTIONS && rm autogarden.service && mv * ../;
+	#backup and update
+	tar -zcvf /tmp/autogarden_backup_$(DATE).tar.gz /autogarden/;
+	mv PROGRAM.OPTIONS /tmp/PROGRAM.OPTIONS;
+	wget "https://occc.co/de/autogarden/autogarden.zip";
+	wget -O - -o /dev/null "https://occc.co/de/autogarden/sha256sum" | sha256sum --check;
+	unzip autogarden.zip;
+	mv /tmp/PROGRAM.OPTIONS /autogarden/PROGRAM.OPTIONS;
 	make dependencies;
 	make executables;
+	make frontend;
+	mv /tmp/autogarden_backup_$(DATE).tar.gz /autogarden;
 	service autogarden start;
-	@echo "Downloaded and merged update. Please copy over all files from autogarden/autogarden_backup to restore your old version if necessary.";
+	-rm /autogarden/autogarden.zip*;
+	@echo "Downloaded and merged update. Please gunzip the backup archive into autogarden to roll back to an old version or recover from something horrible.";
 
 frontend : 
 	@echo "Removing web root files and moving all front end files over to document root...";
 	-rm $(WEB_SERVER_DOCUMENT_ROOT)*;
-	mv frontend/* $(WEB_SERVER_DOCUMENT_ROOT);
-	rm -r frontend;
+	mv /autogarden/frontend/* $(WEB_SERVER_DOCUMENT_ROOT);
+	rm -r /autogarden/frontend;
 
 #this target will only work for systems with apt package management.
 #feel free to ctrl c ctrl v the dependency list to use it with your
@@ -86,3 +93,7 @@ executables : schedule.cc raincheck.cc toggle.cc tz.cc options.hh PROGRAM.OPTION
 	chmod ug+x /autogarden/d;
 
 	@echo "Successfully updated autogarden executables with new code.";
+
+clean:
+	-rm *~;
+	-rm *#*;

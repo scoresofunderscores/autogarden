@@ -3,6 +3,7 @@
 #include <sstream>
 #include <iostream>
 #include <fstream>
+#include <iomanip>
 #include "options.hh"
 
 using namespace std;
@@ -30,10 +31,13 @@ int raining(string json)
   string extraction = "";
   int status = 0x00;
   string weather;
+
+  //dirty json extraction
   
   while(getline(iss,extraction,'"'))
   {
     getline(iss,extraction,'"'); //get the data in quotes
+    
     if(extraction == "main")
     {
       getline(iss,extraction,'"');
@@ -44,12 +48,18 @@ int raining(string json)
       }
       if(extraction == "Rain" || extraction == "Thunderstorm")
 	status = 0xFF; //let mother nature take care of the problem.
-    }
+    }    
     if(extraction == "temp")
     {
       getline(iss,extraction,':');
       getline(iss,extraction,',');
-      cout << temperature(stof(extraction)) << " degrees" << endl; //also for php/logs
+      cout << setprecision(2) << temperature(stof(extraction)) << " degrees" << endl; //also for php/logs
+    }
+    if(extraction == "icon")
+    {
+      getline(iss,extraction,'"');
+      getline(iss,extraction,'"');
+      cout << extraction << endl;
     }
   }
   cout << weather << endl;
@@ -70,16 +80,16 @@ int main(int argc, char ** argv)
   
   if(opt["ALLOW_WEATHER_SERVICE"] == "false")
   {
-    cout << endl;    
-    cout << "Weather API Offline" << endl;
-    return 0;
+    cout << "Weather API disabled." << endl;
+    cout << "" << endl << "" << endl;
+    return 0; //dumb mode
   }
   else
   {
     CURL * curl;
     string json;
     string apiLink = api_link();
-
+   
     curl = curl_easy_init();
     if(curl && apiLink != "null")
     {
@@ -92,7 +102,7 @@ int main(int argc, char ** argv)
       {
 	ofstream ofs("/autogarden/log", ios::ate);
 	ofs << "\nweather) Could not receive weather from OpenWeatherMap API! Did you edit PROGRAM.OPTIONS? autogarden will water your plants even if it is raining outside because of this.";
-	return 1;
+	return 0;
       }
       curl_easy_cleanup(curl);
       return raining(json);

@@ -212,7 +212,7 @@ int main(int argc, char ** argv)
 	{
 	  if(task.perform(oss.str()))
 	  {
-	    if(system("/autogarden/raincheck") > 0) //not raining
+	    if(system("/autogarden/raincheck") > 0) //not raining, send signal
 	    {
 	      std::thread job(toggle, std::ref(task));
 	      job.detach();

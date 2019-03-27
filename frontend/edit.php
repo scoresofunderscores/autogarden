@@ -5,7 +5,7 @@
   <link rel="shortcut icon" type="image/ico" href="favicon.ico"/>
 </head>
 <body>
-  <center id="version">version 0.12 alpha</center>
+  <center id="version">version 0.14 alpha</center>
   <center><h1>alter your autogarden<span id="blinky">_</span></h1></center>
   <div id="top_bar">
     <center><a href="pinConf.php" target="_blank">view pin layout</a></center>
